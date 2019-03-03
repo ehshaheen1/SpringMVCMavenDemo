@@ -21,7 +21,7 @@
 		destroy-method="close">
 		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<beans:property name="url"
-			value="jdbc:mysql://localhost:3306/test" />
+			value="jdbc:mysql://localhost:3306/hibernate" />
 		<beans:property name="username" value="root" />
 		<beans:property name="password" value="" />
 	</beans:bean>
@@ -30,16 +30,16 @@
 	<beans:bean id="hibernate4AnnotatedSessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" />
-		<!-- <beans:property name="annotatedClasses">
+		 <beans:property name="annotatedClasses">
 			<beans:list>
-				<beans:value>org.arpit.java2blog.model.Country</beans:value>
+				<beans:value>com.entity.Customer</beans:value>
 			</beans:list>
-		</beans:property> -->
+		</beans:property> 
 		<beans:property name="hibernateProperties">
 			<beans:props>
 				<beans:prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect
 				</beans:prop>
-				<beans:prop key="hibernate.hbm2ddl.auto">update</beans:prop>
+				<!-- <beans:prop key="hibernate.hbm2ddl.auto">update</beans:prop> -->
 				<beans:prop key="hibernate.show_sql">true</beans:prop>
 			</beans:props>
 		</beans:property>
@@ -48,9 +48,7 @@
     <context:component-scan base-package="com.dao" />
     <context:component-scan base-package="com.service" />
 	<context:component-scan base-package="com.entity" />
-    <beans:bean id="customerService" class="com.service.CustomerServiceImpl">
-		<beans:property name="customerDAO" ref="customerDAO"></beans:property>
-	</beans:bean>
+   
 	<tx:annotation-driven transaction-manager="transactionManager" />
  
 	<beans:bean id="transactionManager"
