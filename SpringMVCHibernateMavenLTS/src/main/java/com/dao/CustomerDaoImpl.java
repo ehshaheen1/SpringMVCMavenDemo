@@ -27,7 +27,21 @@ public class CustomerDaoImpl implements CustomerDao {
 	public void saveCustomer(Customer customerSave) {
 		// TODO Auto-generated method stub
 		Session session=sessionFactory.getCurrentSession();
-		session.save(customerSave);
+		session.saveOrUpdate(customerSave);
+		
+	}
+	@Override
+	public Customer updateCustomer(int custID) {
+		Session session=sessionFactory.getCurrentSession();
+		Customer theCustomer=session.get(Customer.class,custID);
+		return theCustomer;
+	}
+	@Override
+	public void deleteCustomer(int deleteID) {
+		Session session=sessionFactory.getCurrentSession();
+		Query theQuery=session.createQuery("delete from Customer where id=:customerID");
+		theQuery.setParameter("customerID", deleteID);
+		theQuery.executeUpdate();
 		
 	}
 

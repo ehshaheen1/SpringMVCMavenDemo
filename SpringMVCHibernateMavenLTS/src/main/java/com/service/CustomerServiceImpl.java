@@ -23,5 +23,17 @@ public void saveCustomer(Customer customerSave) {
 	 customerDao.saveCustomer(customerSave);
 	
 }
+@Override
+@Transactional
+public Customer updateCustomer(int custID) {
+	// TODO Auto-generated method stub
+	return customerDao.updateCustomer(custID);
+}
+@Override
+@Transactional
+public void deleteCustomer(int deleteID) {
+	// TODO Auto-generated method stub
+	 customerDao.deleteCustomer(deleteID);
+}
 
 }

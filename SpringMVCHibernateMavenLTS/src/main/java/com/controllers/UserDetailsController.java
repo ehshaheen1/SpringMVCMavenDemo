@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.entity.Customer;
 import com.service.CustomerService;
@@ -40,6 +41,35 @@ public class UserDetailsController {
 		customerService.saveCustomer(customerSave);
 		return "redirect:/customer/list";
 	}
+	
+	@RequestMapping(value="/updateCustomer")
+	public String updateCustomer(@RequestParam("customerId") int custID, Model mdl)
+	{
+		
+		Customer customerUpdate=customerService.updateCustomer(custID);
+		mdl.addAttribute("cust", customerUpdate);
+		
+		return "customer-form";
+		
+		
+		
+	}
+	
+	
+	@RequestMapping(value="/deleteCustomer")
+	public String deleteCustomer(@RequestParam("customerIdD") int deleteID)
+	{
+		customerService.deleteCustomer(deleteID);
+		return "redirect:/customer/list";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 }

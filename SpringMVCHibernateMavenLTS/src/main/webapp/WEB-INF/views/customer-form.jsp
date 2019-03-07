@@ -10,6 +10,7 @@
 </div>
 	<div>
 	<form:form action="saveCustomer" modelAttribute="cust" method="POST">
+	   <form:hidden path="id" />
 	   <h2>Save customer</h2>
 	   <table>
 	   <tbody>
